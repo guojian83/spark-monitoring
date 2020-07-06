@@ -16,7 +16,7 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'src/pom.xml'
-    mavenOptions: '-Xmx3072m $(MAVEN_PROFILES)'
+    mavenOptions: '-Xmx3072m -p "$(MAVEN_PROFILES)""'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
