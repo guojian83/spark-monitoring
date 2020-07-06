@@ -24,6 +24,12 @@ steps:
       src/target/*.jar
     TargetFolder: '$(build.artifactstagingdirectory)'
 
+- task: CopyFiles@2
+  inputs:
+    Contents: |
+      src/spark-listeners/scripts/spark-monitoring.sh
+    TargetFolder: '$(build.artifactstagingdirectory)/scripts'
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
 
