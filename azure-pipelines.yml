@@ -16,10 +16,6 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'src/pom.xml'
-    mavenOptions: '-Xmx3072m -P "$(MAVEN_PROFILES)""'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    goals: 'package -P $(MAVEN_PROFILES)'
+
+
