@@ -3,6 +3,9 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+variables:
+  MAVEN_PROFILES: scala-2.11_spark-2.4.5
+
 trigger:
 - master
 
@@ -10,17 +13,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: ShellScript@2
+- task: Maven@3
   inputs:
-    scriptPath: build.sh
-
-# - task: Maven@3
-#   inputs:
-#     mavenPomFile: 'src/pom.xml'
-#     mavenOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.8'
-#     jdkArchitectureOption: 'x64'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#     goals: 'package'
+    mavenPomFile: 'src/pom.xml'
+    mavenOptions: '-Xmx3072m $(MAVEN_PROFILES)'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
