@@ -18,4 +18,12 @@ steps:
     mavenPomFile: 'src/pom.xml'
     goals: 'package -P $(MAVEN_PROFILES)'
 
+- task: CopyFiles@2
+  inputs:
+    Contents: |
+      src/target/*.jar
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
 
