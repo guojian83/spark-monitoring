@@ -24,14 +24,14 @@ steps:
   inputs:
     Contents: |
       src/target/*.jar
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(build.artifactstagingdirectory)/databricks/spark-monitoring'
     flattenFolders: true
 
 - task: CopyFiles@2
   inputs:
     Contents: |
       src/spark-listeners/scripts/spark-monitoring.sh
-    TargetFolder: '$(build.artifactstagingdirectory)/scripts'
+    TargetFolder: '$(build.artifactstagingdirectory)/databricks/spark-monitoring'
     flattenFolders: true
 
 - task: PublishBuildArtifacts@1
